@@ -156,7 +156,7 @@
                 // If we are showing currency change it
                 if(hasCurrency) { bufferH = 180; }
                 // Finally show the calculator
-                apex.showBuffer('Fuel Calculator', 'PrUnTools', 300,300, content);
+                apex.showBuffer('Fuel Calculator', 'PrUnTools', 300, bufferH, content);
 
                 return null;
             }
