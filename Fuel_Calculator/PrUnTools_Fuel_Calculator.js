@@ -154,7 +154,7 @@
                 // Setup buffer default height
                 let bufferH = 118;
                 // If we are showing currency change it
-                if(hasCurrency) { bufferH = 180; }
+                if(hasCurrency) { bufferH = 179; }
                 // Finally show the calculator
                 apex.showBuffer('Fuel Calculator', 'PrUnTools', 300, bufferH, content);
 
