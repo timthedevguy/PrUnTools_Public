@@ -14,11 +14,6 @@
     'use strict';
 
     let data;
-    // REMOVE
-    $.getJSON('contract_data.json', (json) => {
-        data = json.contracts;
-    });
-    // REMOVE
 
     // Load ApexUtils (Inserts Menu on APEX UI)
     apex.load();
@@ -32,7 +27,7 @@
 
     function contract_helper_click() {
 
-        // data = apex.state.contracts;
+        data = apex.state.contracts;
 
         let contracts = Object.values(data).filter(obj => { return obj.status !== 'FULFILLED'; });
         let awaitingProvisioning = Object.values(contracts).filter(obj => { return obj.conditions[0].status !== 'FULFILLED'; });
@@ -155,7 +150,7 @@
         console.log(awaitingPickup);
         console.log(awaitingDelivery);
 
-        apex.showBuffer("Contract Helper", 'PrUnTools', 800,500, html);
+        apex.showBuffer("Contract Helper", 'PrUnTools', 800,300, html);
     }
 
     function openContract() {
