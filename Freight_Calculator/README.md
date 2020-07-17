@@ -9,6 +9,6 @@ This is a TamperMonkey script that provides a Freight Calculator that uses the A
  ### How to Install
  * Click TamperMonkey menu in Browser
  * Click 'Create a new script...'
- * Paste contents of 'PrUnTools_FreightCalc_Monkey.js'
+ * Paste contents of 'PrUnTools_Freight_Calculator.js'
  * Ctrl+S to save.
  * Reload Apex
