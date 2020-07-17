@@ -7,7 +7,7 @@
 // @match        https://apex.prosperousuniverse.com/
 // @grant        none
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
-// @require  https://cdn.jsdelivr.net/gh/binarygod/apexutils@0.0.11/dist/apexutils.min.js
+// @require  https://cdn.jsdelivr.net/gh/binarygod/apexutils@latest/dist/apexutils.min.js
 // ==/UserScript==
 
 (function() {
@@ -29,7 +29,7 @@
 
         data = apex.state.contracts;
 
-        let contracts = Object.values(data).filter(obj => { return obj.status !== 'FULFILLED'; });
+        let contracts = Object.values(data).filter(obj => { return obj.status !== 'FULFILLED' & obj.party === 'PROVIDER'; });
         let awaitingProvisioning = Object.values(contracts).filter(obj => { return obj.conditions[0].status !== 'FULFILLED'; });
         let awaitingPayment = Object.values(contracts).filter(obj => { return obj.conditions[0].status === 'FULFILLED' & obj.conditions[1].status !== 'FULFILLED'; });
         let awaitingPickup = Object.values(contracts).filter(obj => { return obj.conditions[0].status === 'FULFILLED' & obj.conditions[2].status !== 'FULFILLED'; });
@@ -150,7 +150,7 @@
         console.log(awaitingPickup);
         console.log(awaitingDelivery);
 
-        apex.showBuffer("Contract Helper", 'PrUnTools', 800,300, html);
+        apex.showBuffer("Contract Helper", 'PrUnTools <span class="text-orange"> (Work in Progress)</span>', 800,300, html);
     }
 
     function openContract() {

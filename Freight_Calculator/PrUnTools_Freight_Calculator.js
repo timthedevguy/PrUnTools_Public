@@ -36,7 +36,7 @@
                         <td class="PrUnTools_Label_Input yellow"><input style="max-width:75px;" type="text" id="base_value" class="PrUnTools_Control fcalc" value="5000"/></td>
                     <tr>
                     <tr>
-                        <td class="top-border-cell" colspan="2">
+                        <td class="bottom-border-cell" colspan="2">
                             <p>This is the current suggested value by the market for a fully loaded ship per 24 hours or travel.</p>
                         </td>
                     </tr>
@@ -49,7 +49,7 @@
                         <td class="PrUnTools_Label_Input yellow"><input style="max-width:75px;" type="text" id="volume" class="PrUnTools_Control fcalc" value="0"/></td>
                     <tr>
                     <tr>
-                        <td class="top-border-cell" colspan="2">
+                        <td class="bottom-border-cell" colspan="2">
                             <p>The greater of Cargo Tonnage or Cargo Volume will be used for the calculations.</p>
                         </td>
                     </tr>
@@ -58,7 +58,7 @@
                         <td class="PrUnTools_Label_Input yellow"><input style="max-width:75px;" type="text" id="time" class="PrUnTools_Control fcalc" value="0"/></td>
                     <tr>
                     <tr>
-                        <td class="top-border-cell" colspan="2">
+                        <td class="bottom-border-cell" colspan="2">
                             <p>Convert the travel time to hours, round up as needed.</p>
                         </td>
                     </tr>
@@ -72,7 +72,7 @@
 
         $('BODY').on('keyup', '.fcalc', calculate);
 
-        apex.showBuffer("Freight Calculator", 'PrUnTools', 400, 271, content);
+        apex.showBuffer("Freight Calculator", 'PrUnTools', 400, 298, content);
     }
 
     function calculate() {

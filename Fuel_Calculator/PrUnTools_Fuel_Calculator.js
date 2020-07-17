@@ -45,8 +45,20 @@
         if(Object.keys(prices).length > 0) {
 
             // Get all entries with matching Ticker
-            stl = Object.values(prices).filter(obj => { return obj.data.material.ticker === 'SF' });
-            ftl = Object.values(prices).filter(obj => { return obj.data.material.ticker === 'FF' });
+            stl = Object.values(prices).filter(obj => {
+                if(obj.data !== undefined & obj.data != null) {
+                    return obj.data.material.ticker === 'SF'
+                } else {
+                    return false;
+                }
+            });
+            ftl = Object.values(prices).filter(obj => {
+                if(obj.data !== undefined & obj.data != null) {
+                    return obj.data.material.ticker === 'FF'
+                } else {
+                    return false;
+                }
+            });
 
             // Ensure we have at least 1 of each Fuel type in the STATE data
             if(stl.length > 0 & ftl.length > 0) {
@@ -92,8 +104,20 @@
 
                     // Default selected currency is 0, lets start with that one
                     let selectedCode = currencies[Object.keys(currencies)[0]];
-                    stl = Object.values(prices).filter(obj => { return (obj.data.currency.numericCode === selectedCode & obj.data.material.ticker === 'SF') });
-                    ftl = Object.values(prices).filter(obj => { return (obj.data.currency.numericCode === selectedCode & obj.data.material.ticker === 'FF') });
+                    stl = Object.values(prices).filter(obj => {
+                        if(obj.data !== undefined & obj.data != null) {
+                            return (obj.data.currency.numericCode === selectedCode & obj.data.material.ticker === 'SF');
+                        } else {
+                            return false;
+                        }
+                    });
+                    ftl = Object.values(prices).filter(obj => {
+                        if(obj.data !== undefined & obj.data != null) {
+                            return (obj.data.currency.numericCode === selectedCode & obj.data.material.ticker === 'FF');
+                        } else {
+                            return false;
+                        }
+                    });
 
                     // Setup Currency Select Change event.
                     $('BODY').on('change', '#currency-select', select_changed);
@@ -152,9 +176,9 @@
                 }
 
                 // Setup buffer default height
-                let bufferH = 118;
+                let bufferH = 125;
                 // If we are showing currency change it
-                if(hasCurrency) { bufferH = 179; }
+                if(hasCurrency) { bufferH = 197; }
                 // Finally show the calculator
                 apex.showBuffer('Fuel Calculator', 'PrUnTools', 300, bufferH, content);
 
@@ -162,16 +186,30 @@
             }
         }
         // Something is wrong!
-        apex.showAlertBuffer('Fuel Calculator', 'PrUnTools', 'Price Data Missing', 'No Market data has been loaded to memory.  Navigate to area with market prices and use the MRKT utility.', 400,200, 'red');
+        apex.showAlertBuffer('Fuel Calculator', 'PrUnTools', 'Price Data Missing', 'No Market data has been loaded to memory.  Navigate to any SCRN with market prices for Fuel, or open the CX.', 400,200, 'red');
     }
 
     function select_changed() {
 
         // Get Selected Currency Code
         let selectedCode = Number($('#currency-select option:selected').val());
+
         // Get Fuel prices for that Code
-        let stl = Object.values(prices).filter(obj => { return (obj.data.currency.numericCode === selectedCode & obj.data.material.ticker === 'SF') });
-        let ftl = Object.values(prices).filter(obj => { return (obj.data.currency.numericCode === selectedCode & obj.data.material.ticker === 'FF') });
+        let stl = Object.values(prices).filter(obj => {
+            if(obj.data !== undefined & obj.data != null) {
+                return (obj.data.currency.numericCode === selectedCode & obj.data.material.ticker === 'SF')
+            } else {
+                return false;
+            }
+        });
+        let ftl = Object.values(prices).filter(obj => {
+            if(obj.data !== undefined & obj.data != null) {
+                return (obj.data.currency.numericCode === selectedCode & obj.data.material.ticker === 'FF')
+            } else {
+                return false;
+            }
+        });
+
         // Set HTML to new price
         if(stl[0].data.ask != null) {
             $('#sf-fuel-price').html(stl[0].data.ask.price.amount);
