@@ -141,6 +141,7 @@
         html += `
                 </tbody>
             </table>
+            <p style="padding-left:10px;">The 'View' button will only function if the Contracts window is also open or someplace on screen.</p>
         `
 
         $('BODY').on('click', '.contract-view', openContract);
