@@ -1,7 +1,5 @@
 This is a TamperMonkey script that provides Exchange data in tooltip form for Inventories in the Apex console.  This data is pulled every 5 minutes from the FIO ReST API created by Saganaki and Kovus (plus many other contributors and testers) 
 
-This button takes the place of the code you have to copy and paste from the Master Base Planner.
-
 ### Requirements
 * [TamperMonkey](https://www.tampermonkey.net/) - browser plugin for sideloading JS in to current page.
 
