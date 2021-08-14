@@ -1,5 +1,4 @@
-This is a TamperMonkey script that provides a quick button to run the Rain Base Planner market price collection script that uses the ApexUtils library for
-Prosperous Universe.
+This is a TamperMonkey script that provides Exchange data in tooltip form for Inventories in the Apex console.  This data is pulled every 5 minutes from the FIO ReST API created by Saganaki and Kovus (plus many other contributors and testers) 
 
 This button takes the place of the code you have to copy and paste from the Master Base Planner.
 
@@ -15,4 +14,4 @@ This button takes the place of the code you have to copy and paste from the Mast
 
 ### How to Use
 * Tooltips are enabled by default, this is indicated by the FIO-TP button with a green glow
-* If you need to disable them for some reason then click the FIO-TP button which will turn red
+* If you need to disable them it can be achieved by disabling the script in TamperMonkey
