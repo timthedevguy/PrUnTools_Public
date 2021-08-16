@@ -1,14 +1,15 @@
 // ==UserScript==
 // @name         PrUnTools_FIO_Tooltips
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
+// @version      1.1
+// @description  Adds FIO powered market tooltips to Apex console
+// @author       Tim Davis (binarygod, @timthedevguy)
 // @match        https://apex.prosperousuniverse.com/
 // @grant        none
 // @require http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js
 // @require https://cdn.jsdelivr.net/gh/calebjacob/tooltipster@latest/dist/js/tooltipster.bundle.min.js
-// @require https://cdn.jsdelivr.net/gh/timthedevguy/apexutils@0.0.25/dist/apexutils.min.js
+// @require https://cdn.jsdelivr.net/gh/timthedevguy/apexutils@0.0.35/src/apexutils.js
+// @downloadURL https://raw.githubusercontent.com/timthedevguy/PrUnTools_Public/master/FIO_Tooltips/PrUnTools_FIO_Tooltips.js
 // ==/UserScript==
 
 (function () {
@@ -17,6 +18,7 @@
     let fio = [];
     let last_update = null;
     let updates_on = null;
+    let loaded = false;
     let styles = '.tooltipster-base{display:flex;pointer-events:none;position:absolute!important;font-family:"Droid Sans",sans-serif;font-size:10px;color:#bbb}.tooltipster-box{flex:1 1 auto}.tooltipster-content{box-sizing:border-box;max-height:100%;max-width:100%;overflow:auto}.tooltipster-fade{opacity:0;-webkit-transition-property:opacity;-moz-transition-property:opacity;-o-transition-property:opacity;-ms-transition-property:opacity;transition-property:opacity}.tooltipster-fade.tooltipster-show{opacity:1}.tooltipster-sidetip .tooltipster-box{background:#222;border:1px solid #2b485a;box-shadow:0 0 5px rgba(63,162,222,.5);border-radius:0}.tooltipster-sidetip.tooltipster-right .tooltipster-box{margin-left:0}.tooltipster-sidetip .tooltipster-content{line-height:10px;padding:0}.tooltipster-sidetip .tooltipster-arrow{overflow:hidden;display:none;position:absolute}.tooltipster-content H1{border-bottom:1px solid #2b485a;background-color:rgba(63,162,222,.15);padding-bottom:8px;padding-top:9px;padding-left:10px;margin:0;font-weight:400;padding-right:10px;font-size:12px}'
     let tooltip_html = `<table class="PrUnTools_Table">
 						<thead>
@@ -75,22 +77,34 @@
     // Initialize Apex and add Styles
     apex.load(styles);
 
-    // Fired when PrUnTools Menu is ready (Occurs after 5s of page load)
-    document.addEventListener('PrUnTools_Loaded', function() {
+    document.addEventListener('PrUnTools_Loaded', () => {
 
+        console.log("APEX LOADED");
         // Add new Menu Item
-        apex.addMenuItem('fio-tooltips', 'FIO-TP', 'FIO Tooltips (Click to open Help)', open_help);
+        apex.addMenuItem('fio-tooltips', 'FIO-TP', 'FIO Tooltips (Click to open Help)', function(){console.log("CLICK");});
         apex.setMenuItemColor('fio-tooltips', 'green');
 
-        // Detect Screen Change
-        apex.onScreenChange(update_tooltips);
-        // Detect Buffer Window creation
-        apex.onBufferCreated(update_tooltips);
-        // Detect Tile updates
-        apex.onTileUpdate(update_tooltips);
-        // Update the tooltips
+        update_tooltips();
+
+    });
+
+    document.addEventListener('PrUnTools_ScreenChange_Started', () => {
+        apex.setMenuItemColor('fio-tooltips', 'red');
+    });
+
+    document.addEventListener('PrUnTools_ScreenChange_Complete', () => {
+        update_tooltips();
+        apex.setMenuItemColor('fio-tooltips', 'green');
+    });
+
+    document.addEventListener('PrUnTools_TileUpdate', () => {
         update_tooltips();
     });
+
+    document.addEventListener('PrUnTools_BufferCreated', () => {
+        update_tooltips();
+    });
+
 
     function open_help() {
         let help_html = `<div style="padding-left:10px;padding-right:10px;">
@@ -181,6 +195,7 @@
     function parse_data(data, force_update=false) {
 
         let html = ''
+        let isDirty = false;
 
         // Go through all our tickers
         data.tickers.forEach(function(item) {
@@ -202,15 +217,19 @@
                 html = html.replace('null','--');
                 // Add tooltip to box
                 $(`#tooltip_${item}`).html(`<h1>${$(`#tooltip_${item}`).attr('data-title')}</h1>${html}`);
+                isDirty = true;
             }
         });
 
-        // Destroy tooltips
-        try{
-            $('.PrUn_tooltip').tooltipster('destroy');
-        } catch {
-            console.log("Tooltips not initialized yet....");
+        if(isDirty) {
+            // Destroy tooltips
+            try{
+                $('.PrUn_tooltip').tooltipster('destroy');
+            } catch {
+                console.log("Tooltips not initialized yet....");
+            }
         }
+
         // Activate the tooltips
         $('.PrUn_tooltip').tooltipster({
             position: 'right',
