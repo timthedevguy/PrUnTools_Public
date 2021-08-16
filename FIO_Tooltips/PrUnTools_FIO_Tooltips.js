@@ -81,7 +81,7 @@
 
         console.log("APEX LOADED");
         // Add new Menu Item
-        apex.addMenuItem('fio-tooltips', 'FIO-TP', 'FIO Tooltips (Click to open Help)', function(){console.log("CLICK");});
+        apex.addMenuItem('fio-tooltips', 'FIO-TP', 'FIO Tooltips (Click to open Help)', open_help);
         apex.setMenuItemColor('fio-tooltips', 'green');
 
         update_tooltips();
