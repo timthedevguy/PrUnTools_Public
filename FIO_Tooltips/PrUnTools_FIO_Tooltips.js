@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PrUnTools_FIO_Tooltips
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Adds FIO powered market tooltips to Apex console
 // @author       Tim Davis (binarygod, @timthedevguy)
 // @match        https://apex.prosperousuniverse.com/
@@ -9,7 +9,7 @@
 // @require http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js
 // @require https://cdn.jsdelivr.net/gh/calebjacob/tooltipster@latest/dist/js/tooltipster.bundle.min.js
 // @require https://cdn.jsdelivr.net/gh/timthedevguy/apexutils@0.0.35/src/apexutils.js
-// @downloadURL https://raw.githubusercontent.com/timthedevguy/PrUnTools_Public/master/FIO_Tooltips/PrUnTools_FIO_Tooltips.js
+// @downloadURL https://cdn.jsdelivr.net/gh/timthedevguy/PrUnTools_Public@latest/FIO_Tooltips/PrUnTools_FIO_Tooltips.js
 // ==/UserScript==
 
 (function () {
@@ -82,7 +82,6 @@
         console.log("APEX LOADED");
         // Add new Menu Item
         apex.addMenuItem('fio-tooltips', 'FIO-TP', 'FIO Tooltips (Click to open Help)', open_help);
-        apex.setMenuItemColor('fio-tooltips', 'green');
 
         update_tooltips();
 
@@ -94,7 +93,7 @@
 
     document.addEventListener('PrUnTools_ScreenChange_Complete', () => {
         update_tooltips();
-        apex.setMenuItemColor('fio-tooltips', 'green');
+        apex.setMenuItemColor('fio-tooltips', '');
     });
 
     document.addEventListener('PrUnTools_TileUpdate', () => {
@@ -236,6 +235,15 @@
             contentAsHTML: true,
             contentCloning: true,
             arrow: false,
+            hideOnClick: true,
+        });
+
+        $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK').mousedown(function(e) {
+            $(this).parent().parent().tooltipster('hide');
+        });
+
+        $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] ._2UnlzywGZHZb5QF9iK8Biu').mousedown(function(e) {
+            $(this).parent().tooltipster('hide');
         });
     }
 
