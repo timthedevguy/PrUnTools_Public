@@ -15,3 +15,23 @@ This is a TamperMonkey script that provides Exchange data in tooltip form for In
 ### How to Use
 * Tooltips are enabled by default, this is indicated by the FIO-TP button with a green glow
 * If you need to disable them it can be achieved by disabling the script in TamperMonkey
+
+
+### Configure AutoUpdates
+* Open script in TamperMonkey by clicking on TamperMonkey Icon in browser
+* Click 'Dashboard'
+* Click 'PrUnTools_FIO_Tooltips', which opens the editor
+* Click on bottom most 'Settings' tab
+* Check 'Check for Updates'
+* Verify 'Update URL' matches the @updateURL parameter in editor
+* Click 'Save'
+
+### Check for updates (All scripts)
+* Open script in TamperMonkey by clicking on TamperMonkey Icon in browser
+* Utilities -> Check for Userscript updates
+
+### Check for updates (single script)
+* Open script in TamperMonkey by clicking on TamperMonkey Icon in browser
+* Click 'Dashboard'
+* Click 'PrUnTools_FIO_Tooltips', which opens the editor
+* In editor click File -> Check for Updates
