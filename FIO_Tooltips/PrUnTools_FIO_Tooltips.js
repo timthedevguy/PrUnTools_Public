@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PrUnTools_FIO_Tooltips
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Adds FIO powered market tooltips to Apex console
 // @author       Tim Davis (binarygod, @timthedevguy)
 // @match        https://apex.prosperousuniverse.com/
@@ -9,8 +9,12 @@
 // @require http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js
 // @require https://cdn.jsdelivr.net/gh/calebjacob/tooltipster@latest/dist/js/tooltipster.bundle.min.js
 // @require https://cdn.jsdelivr.net/gh/timthedevguy/apexutils@0.0.35/src/apexutils.js
-// @downloadURL https://cdn.jsdelivr.net/gh/timthedevguy/PrUnTools_Public@latest/FIO_Tooltips/PrUnTools_FIO_Tooltips.js
+// @downloadURL https://raw.githubusercontent.com/timthedevguy/PrUnTools_Public/master/FIO_Tooltips/PrUnTools_FIO_Tooltips.js
+// @updateURL https://raw.githubusercontent.com/timthedevguy/PrUnTools_Public/master/FIO_Tooltips/PrUnTools_FIO_Tooltips.js
 // ==/UserScript==
+
+// Fix JQUERY conflicts
+this.$ = this.jQuery = jQuery.noConflict(true);
 
 (function () {
     'use strict';
@@ -106,7 +110,8 @@
 
 
     function open_help() {
-        let help_html = `<div style="padding-left:10px;padding-right:10px;">
+        let help_html = `<div style="padding-left:10px;padding-right:10px;padding-top:10px;">
+        <button class="PrUnTools_Button_Primary" id="force-refresh" style="float:right;">Force Refresh</button>
         <h1>FIO Tooltips Help</h1>
         <p><strong>How to Use</strong><br/>FIO Tooltips are on by default if the TamperMonkey script is enabled.  The system will check FIO for updated prices every 5 minutes and will update all tooltips accordingly.</p>
         <p>The next update time is located at the bottom of each tooltip</p>
@@ -114,15 +119,16 @@
         <p><strong>How to disable?</strong><br/>Disabling FIO Tooltips is done via TamperMonkey.  Click the TamperMonkey icon in browser toolbar and click the toggle switch beside 'PrUnTools_FIO_Tooltips'  Reload Apex console and tooltips are disabled.</p>
         <h2>Special Thanks</h2>
         <p>Special thanks to the authors and contributors of the FIO project.  This addon wouldn't be possible without their amazing work!!!</p>
+        
         </div>`;
-        apex.showBuffer('FIO Tooltips Help', 'PrUnTools', 400, 373, help_html);
+        apex.showBuffer('FIO Tooltips Help', 'PrUnTools', 400, 385, help_html);
     }
 
     function find_tickers() {
         // Find all elements that meet our criteria
         //ARCHIVE CODE: let elements = $.merge($('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK'), $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 35px"] span._1BIGnSPbvzDVBNLlwLm3GK'));
         //ARCHIVE CODE: elements = $.merge(elements, $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 33px"] span._1BIGnSPbvzDVBNLlwLm3GK'));
-        let elements = $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK');
+        let elements = $.merge($('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK'), $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 33px"] span._1BIGnSPbvzDVBNLlwLm3GK')); //$('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK');
 
         // Convert to array and grab JUST the innerHTML
         let all_tickers = Array.from(elements).map(function(a) {return a.innerHTML;});
@@ -244,6 +250,10 @@
 
         $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] ._2UnlzywGZHZb5QF9iK8Biu').mousedown(function(e) {
             $(this).parent().tooltipster('hide');
+        });
+
+        $('body').on('click', '#force-refresh', () => {
+           update_tooltips();
         });
     }
 
