@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PrUnTools_FIO_Tooltips
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.4
 // @description  Adds FIO powered market tooltips to Apex console
 // @author       Tim Davis (binarygod, @timthedevguy)
 // @match        https://apex.prosperousuniverse.com/
@@ -150,7 +150,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
         data.tickers.forEach(function(item) {
             if($(`#tooltip_${item}`).length == 0) {
                 // Create our element
-                $('BODY').append($('<DIV />').attr('id',`tooltip_${item}`).addClass('PrUn_tooltip_content'));
+                $('BODY').append($('<DIV />').attr('style', 'display:none;').append($('<DIV />').attr('id',`tooltip_${item}`).addClass('PrUn_tooltip_content')));
             }
         });
         //Loop through elements and configure to use tooltips
