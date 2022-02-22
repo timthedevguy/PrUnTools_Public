@@ -8,6 +8,8 @@
 // @grant        none
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
 // @require  https://cdn.jsdelivr.net/gh/binarygod/apexutils@0.0.36/dist/apexutils.min.js
+// @downloadURL https://raw.githubusercontent.com/timthedevguy/PrUnTools_Public/master/State_Export/PrUnTools_State_Export.js
+// @updateURL https://raw.githubusercontent.com/timthedevguy/PrUnTools_Public/master/State_Export/PrUnTools_State_Export.js
 // ==/UserScript==
 
 (function() {
