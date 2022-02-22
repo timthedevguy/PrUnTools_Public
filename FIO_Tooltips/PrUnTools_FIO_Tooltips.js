@@ -128,7 +128,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
         // Find all elements that meet our criteria
         //ARCHIVE CODE: let elements = $.merge($('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK'), $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 35px"] span._1BIGnSPbvzDVBNLlwLm3GK'));
         //ARCHIVE CODE: elements = $.merge(elements, $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 33px"] span._1BIGnSPbvzDVBNLlwLm3GK'));
-        let elements = $.merge($('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK'), $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 33px"] span._1BIGnSPbvzDVBNLlwLm3GK')); //$('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK');
+        let elements = $.merge($('.T5C45pTOW9QTzokWPqLQJg\\=\\=[style*="height: 48px"] span.rjpYL1i9cZmf47fM9qWyZQ\\=\\='), $('.T5C45pTOW9QTzokWPqLQJg\\=\\=[style*="height: 33px"] span.rjpYL1i9cZmf47fM9qWyZQ\\=\\=')); //$('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK');
 
         // Convert to array and grab JUST the innerHTML
         let all_tickers = Array.from(elements).map(function(a) {return a.innerHTML;});
@@ -244,11 +244,11 @@ this.$ = this.jQuery = jQuery.noConflict(true);
             hideOnClick: true,
         });
 
-        $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] span._1BIGnSPbvzDVBNLlwLm3GK').mousedown(function(e) {
+        $('.T5C45pTOW9QTzokWPqLQJg\\=\\=[style*="height: 48px"] span.rjpYL1i9cZmf47fM9qWyZQ\\=\\=').mousedown(function(e) {
             $(this).parent().parent().tooltipster('hide');
         });
 
-        $('.V8WqkG0dijeM9m2xgyXcj[style*="height: 48px"] ._2UnlzywGZHZb5QF9iK8Biu').mousedown(function(e) {
+        $('.T5C45pTOW9QTzokWPqLQJg\\=\\=[style*="height: 48px"] .nlQirpSkdLH0a6+C4lhduA\\=\\=').mousedown(function(e) {
             $(this).parent().tooltipster('hide');
         });
 
