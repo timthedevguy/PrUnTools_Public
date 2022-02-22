@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         PrUnTools_Rain_Pricing
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       You
 // @match        https://apex.prosperousuniverse.com/
 // @grant        none
 // @require  http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
-// @require  https://cdn.jsdelivr.net/gh/timthedevguy/apexutils@0.0.22/dist/apexutils.min.js
+// @require  https://cdn.jsdelivr.net/gh/timthedevguy/apexutils@0.0.36/dist/apexutils.min.js
 // ==/UserScript==
 
 (function() {

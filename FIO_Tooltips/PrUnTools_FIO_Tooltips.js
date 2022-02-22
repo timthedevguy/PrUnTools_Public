@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         PrUnTools_FIO_Tooltips
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  Adds FIO powered market tooltips to Apex console
 // @author       Tim Davis (binarygod, @timthedevguy)
 // @match        https://apex.prosperousuniverse.com/
 // @grant        none
 // @require http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js
 // @require https://cdn.jsdelivr.net/gh/calebjacob/tooltipster@latest/dist/js/tooltipster.bundle.min.js
-// @require https://cdn.jsdelivr.net/gh/timthedevguy/apexutils@0.0.35/src/apexutils.js
+// @require https://cdn.jsdelivr.net/gh/timthedevguy/apexutils@0.0.36/src/apexutils.js
 // @downloadURL https://raw.githubusercontent.com/timthedevguy/PrUnTools_Public/master/FIO_Tooltips/PrUnTools_FIO_Tooltips.js
 // @updateURL https://raw.githubusercontent.com/timthedevguy/PrUnTools_Public/master/FIO_Tooltips/PrUnTools_FIO_Tooltips.js
 // ==/UserScript==
